@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Reserva
+from .serializers import ReservaSerializer
 
-# Create your views here.
+class ReservaViewSet(ModelViewSet):
+    queryset = Reserva.objects.all()
+    serializer_class = ReservaSerializer

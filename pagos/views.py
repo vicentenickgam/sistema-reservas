@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Pago
+from .serializers import PagoSerializer
 
-# Create your views here.
+class PagoViewSet(ModelViewSet):
+    queryset = Pago.objects.all()
+    serializer_class = PagoSerializer

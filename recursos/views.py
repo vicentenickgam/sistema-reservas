@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import TipoRecurso, Recurso
+from .serializers import TipoRecursoSerializer, RecursoSerializer
 
-# Create your views here.
+class TipoRecursoViewSet(ModelViewSet):
+    queryset = TipoRecurso.objects.all()
+    serializer_class = TipoRecursoSerializer
+
+
+class RecursoViewSet(ModelViewSet):
+    queryset = Recurso.objects.all()
+    serializer_class = RecursoSerializer

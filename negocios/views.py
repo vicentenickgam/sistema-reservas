@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import TipoNegocio, Negocio
+from .serializers import TipoNegocioSerializer, NegocioSerializer
 
-# Create your views here.
+class TipoNegocioViewSet(ModelViewSet):
+    queryset = TipoNegocio.objects.all()
+    serializer_class = TipoNegocioSerializer
+
+
+class NegocioViewSet(ModelViewSet):
+    queryset = Negocio.objects.all()
+    serializer_class = NegocioSerializer

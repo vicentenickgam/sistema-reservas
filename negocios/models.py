@@ -1,3 +1,26 @@
 from django.db import models
+from usuarios.models import Usuario
 
-# Create your models here.
+class TipoNegocio(models.Model):
+    nombre = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
+
+
+class Negocio(models.Model):
+    nombre = models.CharField(max_length=150)
+    tipo_negocio = models.ForeignKey(
+        TipoNegocio,
+        on_delete=models.PROTECT,
+        related_name='negocios'
+    )
+    propietario = models.ForeignKey(
+        Usuario,
+        on_delete=models.CASCADE,
+        related_name='negocios'
+    )
+    activo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nombre
