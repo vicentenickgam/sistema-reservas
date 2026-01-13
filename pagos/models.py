@@ -1,6 +1,5 @@
 from django.db import models
 from usuarios.models import Usuario
-from reservas.models import Reserva
 from planes.models import NegocioPlan
 
 class Pago(models.Model):
@@ -14,13 +13,6 @@ class Pago(models.Model):
     usuario = models.ForeignKey(
         Usuario,
         on_delete=models.CASCADE,
-        related_name='pagos'
-    )
-    reserva = models.ForeignKey(
-        Reserva,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
         related_name='pagos'
     )
     negocio_plan = models.ForeignKey(

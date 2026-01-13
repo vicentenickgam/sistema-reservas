@@ -2,10 +2,15 @@ from django.db import models
 from usuarios.models import Usuario
 
 class Rol(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        verbose_name = "Rol"
+        verbose_name_plural = "Roles"
 
     def __str__(self):
         return self.nombre
+
 
 
 class UsuarioRol(models.Model):

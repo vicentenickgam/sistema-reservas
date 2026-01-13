@@ -2,7 +2,11 @@ from django.db import models
 from negocios.models import Negocio
 
 class TipoRecurso(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        verbose_name = "Tipo de recurso"
+        verbose_name_plural = "Tipos de recurso"
 
     def __str__(self):
         return self.nombre
@@ -20,6 +24,13 @@ class Recurso(models.Model):
         related_name='recursos'
     )
     nombre = models.CharField(max_length=150)
+    activo = models.BooleanField(default=True)
+    creado_en = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Recurso"
+        verbose_name_plural = "Recursos"
+        unique_together = ('negocio', 'nombre')
 
     def __str__(self):
         return f"{self.nombre} - {self.negocio}"

@@ -41,6 +41,8 @@ class Reserva(models.Model):
         choices=ESTADOS,
         default='pendiente'
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Reserva {self.id} - {self.fecha}"
+        return f"Reserva {self.id} - {self.fecha} {self.hora_inicio}-{self.hora_fin}"
